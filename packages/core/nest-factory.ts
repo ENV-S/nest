@@ -80,7 +80,9 @@ export class NestFactoryStatic {
     serverOrOptions?: AbstractHttpAdapter | NestApplicationOptions,
     options?: NestApplicationOptions,
   ): Promise<T> {
-    const [httpServer, appOptions] = this.isHttpServer(serverOrOptions!)
+    const isHttpServer = this.isHttpServer(serverOrOptions!);
+
+    const [httpServer, appOptions] = isHttpServer
       ? [serverOrOptions, options]
       : [this.createHttpAdapter(), serverOrOptions];
 
